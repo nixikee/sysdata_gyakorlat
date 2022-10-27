@@ -1,0 +1,81 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Add invoice</h4>
+  </div>
+  <div class="modal-body">
+      <p>Are you sure you want to add the invoice?</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" (click)="modal.close('Cancel click')">Cancel</button>
+      <button type="button" class="btn btn-primary" (click)="modal.close('Add click')">Add</button>
+  </div>
+</ng-template>
+
+<div class="p-3 mb-2 bg-dark margin">
+  <mat-card class="card">
+    <form [formGroup]="form" (ngSubmit)="saveInvoice(content)">
+      <h3 class="center">New Invoice</h3>
+        <div class="mb-3">
+          <label for="costCenter" class="form-label">Cost center*</label> 
+          <input type="text" class="form-control" id="costCenter" matInput focus formControlName="costCenter" required>
+        </div>
+        <div class="mb-3">
+          <label for="businessPartner" class="form-label">Business Partner*</label>
+          <input type="text" class="form-control" id="businessPartner" matInput formControlName="businessPartner" required>
+        </div>
+        <div class="mb-3">
+          <label for="contractor" class="form-label">Contractor*</label>
+          <input type="text" class="form-control" id="contractor" matInput formControlName="contractor" required>
+        </div>
+        <div class="mb-3">
+          <label for="currency" class="form-label">Currency*</label>
+            <select class="form-select" formControlName="currency" required>
+              <option value="" selected>Open this select menu</option>
+              <option value="HUF">HUF</option>
+              <option value="EUR">EUR</option>
+              <option value="USD">USD</option>
+              <option value="Other">Other:</option>
+            </select>
+        </div>
+        <div class="mb-3">
+          <label for="amount" class="form-label">Amount*</label>
+          <input type="number" class="form-control" id="amount" matInput formControlName="amount" required>
+        </div>
+        <div class="mb-3">
+          <label for="orderNumber" class="form-label">Order number*</label>
+          <input type="text" class="form-control" id="orderNumber" matInput formControlName="orderNumber" required>
+        </div>
+        <div class="mb-3">
+          <label for="supplierInvoiceId" class="form-label">Supplier Invoice Id*</label>
+          <input type="text" class="form-control" id="supplierInvoiceId" matInput formControlName="supplierInvoiceId" required>
+        </div>
+        <div class="mb-3">
+          <button type="button" mat-raised-button (click)="fileInput.click()">Select Invoice</button>
+          <input hidden (change)="selectFile($event)" #fileInput type="file" id="file" accept=".pdf">
+        </div>
+        <mat-chip-list>
+          <mat-chip *ngIf="costCenterError" style="margin-top: 16px; color: red;">
+            Cost center is required.
+          </mat-chip>
+          <mat-chip *ngIf="businessPartnerError" style="margin-top: 16px; color: red;">
+            Business Partner is required.
+          </mat-chip>
+          <mat-chip *ngIf="contractorError" style="margin-top: 16px; color: red;">
+            Contractor is required.
+          </mat-chip>
+          <mat-chip *ngIf="orderNumberError" style="margin-top: 16px; color: red;">
+            Order number is required.
+          </mat-chip>
+          <mat-chip *ngIf="supplierInvoiceIdError" style="margin-top: 16px; color: red;">
+            Supplier Invoice Id is required.
+          </mat-chip>
+          <mat-chip *ngIf="fileUploadError" style="margin-top: 16px; color: red;">
+            Invoice pdf upload is required.
+          </mat-chip>
+        </mat-chip-list>
+        <div>
+          <button type="submit" style="margin-top: 16px; margin-left: 40%; margin-right: 40%;" mat-raised-button color="primary" [disabled]="form.invalid" (click)="upload()">Add Invoice</button>
+        </div>
+    </form>  
+  </mat-card>
+</div>

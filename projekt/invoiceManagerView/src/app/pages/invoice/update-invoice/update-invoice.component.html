@@ -1,0 +1,57 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Update invoice</h4>
+  </div>
+  <div class="modal-body">
+      <p>Are you sure you want to update the invoice?</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" (click)="modal.close('Cancel click')">Cancel</button>
+      <button type="button" class="btn btn-primary" (click)="modal.close('Update click')">Update</button>
+  </div>
+</ng-template>
+
+<div class="p-3 mb-2 bg-dark">
+ <mat-card class="card">
+    <form [formGroup]="form" (ngSubmit)="updateInvoice(content)">
+      <h3 class="center">Update Invoice</h3>
+        <div class="mb-3">
+          <label for="costCenter" class="form-label">Cost center*</label> 
+          <input type="text" class="form-control" id="costCenter" value="{{invoice.costCenter}}" matInput focus formControlName="costCenter" required>
+        </div>
+        <div class="mb-3">
+          <label for="businessPartner" class="form-label">Business Partner*</label>
+          <input type="text" class="form-control" id="businessPartner" value="{{invoice.businessPartner}}" matInput formControlName="businessPartner" required>
+        </div>
+        <div class="mb-3">
+          <label for="contractor" class="form-label">Contractor*</label>
+          <input type="text" class="form-control" id="contractor" value="{{invoice.contractor}}" matInput formControlName="contractor" required>
+        </div>
+        <div class="mb-3">
+          <label for="currency" class="form-label">Currency*</label>
+            <select class="form-select" value="{{invoice.currency}}" formControlName="currency" required>
+              <option value="HUF" selected>HUF</option>
+              <option value="EUR">EUR</option>
+              <option value="USD">USD</option>
+              <option value="">Other: <input type="text" class="form-control" matInput formControlName="currency"></option>
+            </select>
+        </div>
+        <div class="mb-3">
+          <label for="amount" class="form-label">Amount*</label>
+          <input type="number" class="form-control" id="amount" value="{{invoice.amount}}" matInput formControlName="amount" required>
+        </div>
+        <div class="mb-3">
+          <label for="orderNumber" class="form-label">Order number*</label>
+          <input type="text" class="form-control" id="orderNumber" value="{{invoice.orderNumber}}" matInput formControlName="orderNumber" required>
+        </div>
+        <div class="mb-3">
+          <label for="invoiceId" class="form-label">Supplier Invoice Id*</label>
+          <input type="text" class="form-control" id="invoiceId" value="{{invoice.supplierInvoiceId}}" matInput formControlName="supplierInvoiceId" required>
+        </div>
+        <div>
+          <button type="submit" style="margin-top: 16px; margin-left: 30%; margin-right: 5%;" mat-raised-button color="primary" (click)="getInvoice(invoice.internalInvoiceId)">Cancel</button>
+          <button type="submit" style="margin-top: 16px; margin-left: 5%;" mat-raised-button color="primary">Update</button>
+        </div>
+    </form>  
+  </mat-card>
+</div>

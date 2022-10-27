@@ -1,0 +1,23 @@
+<ng-template #loggedOut>
+    Please login.
+</ng-template>
+
+<div class="p-3 mb-2 bg-dark" *ngIf="currentUser; else loggedOut">
+    <mat-card class="card">
+        <h2 class="title">{{currentUser.lastName}} {{currentUser.firstName}}</h2>
+        <ul *ngIf="currentUser">
+            <li>User Id: {{currentUser.userId}}</li>
+            <li>Email: {{currentUser.email}}</li>
+            <strong>Role:</strong>
+            <ul>
+                <li>
+                    <td *ngIf="currentUser.role == 'ROLE_ADMIN'">administrator</td>
+                    <td *ngIf="currentUser.role == 'ROLE_MANAGER'">manager</td>
+                    <td *ngIf="currentUser.role == 'ROLE_FINANCIAL_CONTROLLER'">financial controller</td>
+                    <td *ngIf="currentUser.role == 'ROLE_FINANCIAL_CLERK'">financial clerk</td>
+                </li>
+            </ul>
+            <!--<li><button class="button" (click)="updatePassword(currentUser.userId)">Update Password</li></td>-->
+        </ul>
+    </mat-card>
+</div>

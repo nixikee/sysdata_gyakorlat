@@ -1,0 +1,21 @@
+a {
+    float: left;
+    padding: 14px 16px;
+}
+
+.right {
+    margin-left: 85%;
+    font-weight: bolder;
+}
+
+.right .nav-link {
+    color: aqua;
+    font-size: 30px;
+    padding: 5%;
+}
+
+.right2 .nav-link {
+    color: aqua;
+    font-size: 20px;
+    padding: 5%;
+}

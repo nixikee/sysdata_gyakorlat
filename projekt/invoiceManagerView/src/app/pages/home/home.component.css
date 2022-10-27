@@ -1,0 +1,23 @@
+.home {
+    margin-top: 2%;
+    margin-bottom: 2%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    background-color: black;
+}
+
+img {
+    width: 225px;
+    padding: 10px;
+}
+
+.elso {
+    margin-left: 3%;
+}
+
+.link {
+    color: bisque;
+    margin-bottom: 0%;
+    margin-left: 1%;
+    font-size: 6px;
+}

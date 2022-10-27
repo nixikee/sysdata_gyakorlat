@@ -1,0 +1,67 @@
+<div class="background search2">
+    <h2 class="title">Users</h2>
+    <div class="search">
+        <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  Start searching for an user details">
+    </div>
+</div>
+<table class="table table-dark table-striped">
+    <thead>
+        <tr class="center">
+            <th>
+                <button class="orderButton" (click)="orderByUserId()">User Id</button>
+                <span class="sortorder" *ngIf="orderUserId == 'ordered'"></span>
+                <span class="reverse" *ngIf="orderUserId == 'reverse'"></span>
+                <span class="notorder" *ngIf="orderUserId == 'not order'"></span>
+            </th>
+            <th>
+                <button class="orderButton" (click)="orderByCompanyId()">Company Id</button>
+                <span class="sortorder" *ngIf="orderCompanyId == 'ordered'"></span>
+                <span class="reverse" *ngIf="orderCompanyId == 'reverse'"></span>
+                <span class="notorder" *ngIf="orderCompanyId == 'not order'"></span>
+            </th>
+            <th>
+                <button class="orderButton" (click)="orderByEmail()">Email</button>
+                <span class="sortorder" *ngIf="orderEmail == 'ordered'"></span>
+                <span class="reverse" *ngIf="orderEmail == 'reverse'"></span>
+                <span class="notorder" *ngIf="orderEmail == 'not order'"></span>
+            </th>
+            <th>
+                <button class="orderButton" (click)="orderByFirstName()">Firstname</button>
+                <span class="sortorder" *ngIf="orderFirstName == 'ordered'"></span>
+                <span class="reverse" *ngIf="orderFirstName == 'reverse'"></span>
+                <span class="notorder" *ngIf="orderFirstName == 'not order'"></span>
+            </th>
+            <th>
+                <button class="orderButton" (click)="orderByLastName()">Lastname</button>
+                <span class="sortorder" *ngIf="orderLastName == 'ordered'"></span>
+                <span class="reverse" *ngIf="orderLastName == 'reverse'"></span>
+                <span class="notorder" *ngIf="orderLastName == 'not order'"></span>
+            </th>
+            <th>
+                <button class="orderButton" (click)="orderByRole()">Role</button>
+                <span class="sortorder" *ngIf="orderRole == 'ordered'"></span>
+                <span class="reverse" *ngIf="orderRole == 'reverse'"></span>
+                <span class="notorder" *ngIf="orderRole == 'not order'"></span>
+            </th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of users | filter:searchText" class="center">
+            <td class="center">{{user?.userId}}</td>
+            <td>{{user?.companyId}}</td>
+            <td>{{user?.email}}</td>
+            <td>{{user?.firstName}}</td>
+            <td>{{user?.lastName}}</td>
+            <td *ngIf="user?.role == 'ROLE_ADMIN'">administrator</td>
+            <td *ngIf="user?.role == 'ROLE_MANAGER'">manager</td>
+            <td *ngIf="user?.role == 'ROLE_FINANCIAL_CONTROLLER'">financial controller</td>
+            <td *ngIf="user?.role == 'ROLE_FINANCIAL_CLERK'">financial clerk</td>
+            <td><button class="button" (click)="updateUser(user.userId)">Update</button></td>
+            <td><button class="button" (click)="updatePassword(user.userId)">Update Password</button></td>
+            <td><button class="button" (click)="deleteUser(user.userId)">Delete</button></td>
+        </tr>
+    </tbody>
+</table>

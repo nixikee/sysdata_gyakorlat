@@ -1,0 +1,87 @@
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Add user</h4>
+    </div>
+    <div class="modal-body">
+        <p>Are you sure you want to add the user?</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" (click)="modal.close('Cancel click')">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="modal.close('Add click')">Add</button>
+    </div>
+  </ng-template>
+  
+  <div class="p-3 mb-2 bg-dark margin">
+    <mat-card class="card">
+      <form *ngIf="!isSuccessful" [formGroup]="form" (ngSubmit)="saveUser(content)">
+        <h3 class="center">New User</h3>
+          <div class="mb-3">
+            <label for="companyId" class="form-label">Company Id*</label> 
+            <input type="text" class="form-control" id="companyId" minlength="8" maxlength="8" matInput focus formControlName="companyId" required>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email*</label> 
+            <input type="email" class="form-control" id="email" matInput formControlName="email" required>
+          </div>
+          <div class="mb-3">
+            <label for="email2" class="form-label">Email control*</label>
+            <input type="email" class="form-control" id="email2" matInput formControlName="email2" required>
+          </div>
+          <div class="mb-3">
+            <label for="firstName" class="form-label">Firstname*</label>
+            <input type="text" class="form-control" id="firstName" matInput formControlName="firstName" required>
+          </div>
+          <div class="mb-3">
+            <label for="lastName" class="form-label">Lastname*</label>
+            <input type="text" class="form-control" id="lastName" matInput formControlName="lastName" required>
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Password*</label>
+            <input type="password" class="form-control" id="password" minlength="6" matInput formControlName="password" required>
+          </div>
+          <div class="mb-3">
+            <label for="role" class="form-label">Role*</label>
+              <select class="form-select" formControlName="role" required>
+                <option value="" selected>Open this select menu</option>
+                <option value="ROLE_MANAGER">Manager</option>
+                <option value="ROLE_FINANCIAL_CONTROLLER">Financial controller</option>
+                <option value="ROLE_FINANCIAL_CLERK">Financial clerk</option>
+                <option value="ROLE_ADMIN">Administrator</option>
+              </select>
+          </div>
+          <mat-chip-list>
+            <mat-chip *ngIf="emailError" style="margin-top: 16px; color: red;">
+              Email addresses do not match.
+            </mat-chip>
+            <mat-chip *ngIf="email1Error" style="margin-top: 16px; color: red;">
+              Email is required.
+            </mat-chip>
+            <mat-chip *ngIf="email2Error" style="margin-top: 16px; color: red;">
+              Email control is required.
+            </mat-chip>
+            <mat-chip *ngIf="companyIdError" style="margin-top: 16px; color: red;">
+              Company Id is required and should be 8 characters long.
+            </mat-chip>
+            <mat-chip *ngIf="passwordError" style="margin-top: 16px; color: red;">
+              Password is required and minimum length should be 6 characters.
+            </mat-chip>
+            <mat-chip *ngIf="firstNameError" style="margin-top: 16px; color: red;">
+              Firstname is required.
+            </mat-chip>
+            <mat-chip *ngIf="lastNameError" style="margin-top: 16px; color: red;">
+              Lastname is required.
+            </mat-chip>
+            <mat-chip *ngIf="roleError" style="margin-top: 16px; color: red;">
+              Role is required.
+            </mat-chip>
+          </mat-chip-list>
+          <div>
+            <button type="submit" style="margin-top: 16px; margin-left: 40%; margin-right: 40%;" mat-raised-button color="primary" [disabled]="form.invalid">Add User</button>
+          </div>
+      </form>  
+
+      <div class="alert alert-success" *ngIf="isSuccessful">
+        Your registration is successful!
+      </div>
+    </mat-card>
+  </div>

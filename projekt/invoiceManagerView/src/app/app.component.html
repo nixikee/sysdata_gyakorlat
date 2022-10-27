@@ -1,0 +1,67 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <div class="navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <div>
+          <a class="nav-link active"
+              routerLink="/home"
+              routerLinkActive="activebutton"
+              ariaCurrentWhenActive="page"
+              *ngIf="isLoggedIn">
+              Home
+          </a>
+          <a class="nav-link"
+                routerLink="/list_invoice"
+                routerLinkActive="activebutton"
+                ariaCurrentWhenActive="page"
+                *ngIf="isLoggedIn">
+              List invoice
+          </a>
+          <a class="nav-link"
+                routerLink="/add_invoice"
+                routerLinkActive="activebutton"
+                ariaCurrentWhenActive="page"
+                *ngIf="showAdmin || showFinancialClerk">
+              Add invoice
+          </a>
+          <a class="nav-link"
+                routerLink="/list_user"
+                routerLinkActive="activebutton"
+                ariaCurrentWhenActive="page"
+                *ngIf="showAdmin">
+              List user
+          </a>
+          <a class="nav-link"
+                routerLink="/register"
+                routerLinkActive="activebutton"
+                ariaCurrentWhenActive="page"
+                *ngIf="showAdmin">
+              Add user
+          </a>
+          <div class="right" *ngIf="!isLoggedIn">
+            <a class="nav-link"
+                routerLink="/login"
+                routerLinkActive="activebutton"
+                ariaCurrentWhenActive="page">
+              Login
+            </a>
+          </div>
+          <div class="right2" *ngIf="isLoggedIn">
+            <a class="nav-link"
+                routerLink="/profile"
+                routerLinkActive="activebutton"
+                ariaCurrentWhenActive="page">
+              {{username}}
+            </a>
+            <a class="nav-link"
+                href
+                (click)="logout()">
+              Logout
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+<router-outlet></router-outlet>

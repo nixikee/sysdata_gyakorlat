@@ -1,0 +1,95 @@
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Delete invoice</h4>
+    </div>
+    <div class="modal-body">
+        Are you sure you want to delete the invoice?
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" (click)="modal.close('Cancel click')">Cancel</button>
+    <button type="button" class="btn btn-primary" (click)="modal.close('Delete click')">Delete</button>
+    </div>
+</ng-template>
+
+<ng-template #content2 let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Update status</h4>
+    </div>
+    <div class="modal-body">
+        Are you sure you want to accept the invoice?
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" (click)="modal.close('Cancel click')">Cancel</button>
+    <button type="button" class="btn btn-primary" (click)="modal.close('Acceptance click')">Accept</button>
+    </div>
+</ng-template>
+
+<ng-template #content3 let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Update status</h4>
+    </div>
+    <div class="modal-body">
+        Are you sure you want to reject the invoice?
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" (click)="modal.close('Cancel click')">Cancel</button>
+    <button type="button" class="btn btn-primary" (click)="modal.close('Rejection click')">Reject</button>
+    </div>
+</ng-template>
+
+<ng-template #content4 let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Update status</h4>
+    </div>
+    <div class="modal-body">
+        Are you sure you want to return for correction the invoice?
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" (click)="modal.close('Cancel click')">Cancel</button>
+    <button type="button" class="btn btn-primary" (click)="modal.close('Return click')">Return</button>
+    </div>
+</ng-template>
+
+<ng-template #content5 let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Update status</h4>
+  </div>
+  <div class="modal-body">
+      Are you sure you updated the invoice?
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" (click)="modal.close('Cancel click')">Cancel</button>
+  <button type="button" class="btn btn-primary" (click)="modal.close('Updated click')">Updated</button>
+  </div>
+</ng-template>
+
+<div class="p-3 mb-2 bg-dark">
+    <mat-card class="card">
+        <h2>Invoice processing</h2>
+        <ul *ngIf="invoice">
+            <li>Id: {{invoice.internalInvoiceId}}</li>
+            <li>Upload date: {{invoice.uploadDate}}</li>
+            <li>Costcenter: {{invoice.costCenter}}</li>
+            <li>Business partner: {{invoice.businessPartner}}</li>
+            <li>Contractor: {{invoice.contractor}}</li>
+            <li>Currency: {{invoice.currency}}</li>
+            <li>Amount: {{invoice.amount}}</li>
+            <li>Order number: {{invoice.orderNumber}}</li>
+            <li>Invoice Id: {{invoice.supplierInvoiceId}}</li>
+            <li>Status: {{invoice.status}} <br>
+              <div *ngIf="!finalStatus">
+                <button class="button" (click)="updateAcceptance(content2, invoice.internalInvoiceId)" *ngIf="!correction && ((!financialControllerAcceptance && showFinancialController) || (financialControllerAcceptance && showManager) || showAdmin)">Accept</button>
+                <button class="button" (click)="updateRejection(content3, invoice.internalInvoiceId)" *ngIf="!correction && ((!financialControllerAcceptance && showFinancialController) || (financialControllerAcceptance && showManager) || showAdmin)">Reject</button>
+                <button class="button" (click)="updateCorrection(content4, invoice.internalInvoiceId)" *ngIf="!correction && ((!financialControllerAcceptance && showFinancialController) || (financialControllerAcceptance && showManager) || showAdmin)">Return for update</button>
+                <button class="button" (click)="invoiceUpdate(invoice.internalInvoiceId)" *ngIf="correction && (showAdmin || showFinancialClerk)">Updated</button>
+              </div>
+            </li>
+        </ul>
+
+        <button class="button" (click)="downloadPdf(invoice.internalInvoiceId)">Download</button>
+        <button class="button" (click)="updateInvoice(invoice.internalInvoiceId)" *ngIf="!finalStatus && correction && (showAdmin || showFinancialClerk)">Update</button>
+        <button class="button" (click)="deleteInvoice(content, invoice.internalInvoiceId)"  *ngIf="showAdmin">Delete</button>
+        <button class="button" (click)="getInvoices()">Cancel</button>
+
+    </mat-card>
+</div>

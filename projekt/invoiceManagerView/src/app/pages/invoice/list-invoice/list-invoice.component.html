@@ -1,0 +1,249 @@
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Internal Invoice Id</h4>
+    </div>
+    <div class="modal-body">
+        <input type="number" id="internalInvoiceId" class="form-control" [(ngModel)]="internalInvoiceId">
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="modal.close('Search click')">Search</button>
+    </div>
+</ng-template>
+
+<ng-template #content1 let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Upload Date</h4>
+    </div>
+    <div class="modal-body">
+        <label for="min">Min</label>
+        <input type="datetime" class="form-control" id="min" placeholder="yyyy-mm-dd" name="uploadDate" ngbDatepicker [(ngModel)]="minUploadDate">
+        <label for="max">Max</label>
+        <input type="datetime" class="form-control" id="max" placeholder="yyyy-mm-dd" name="uploadDate" ngbDatepicker [(ngModel)]="maxUploadDate">
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="modal.close('Search click')">Search</button>
+    </div>
+</ng-template>
+
+<ng-template #content2 let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Costcenter</h4>
+    </div>
+    <div class="modal-body">
+        <input type="text" class="form-control" [(ngModel)]="costCenter">
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="modal.close('Search click')">Search</button>
+    </div>
+</ng-template>
+
+<ng-template #content3 let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Businesspartner</h4>
+    </div>
+    <div class="modal-body">
+        <input type="text" class="form-control" [(ngModel)]="businessPartner">
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="modal.close('Search click')">Search</button>
+    </div>
+</ng-template>
+
+<ng-template #content4 let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Contractor</h4>
+    </div>
+    <div class="modal-body">
+        <input type="text" class="form-control" [(ngModel)]="contractor">
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="modal.close('Search click')">Search</button>
+    </div>
+</ng-template>
+
+<ng-template #content5 let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Currency</h4>
+    </div>
+    <div class="modal-body">
+        <input type="text" class="form-control" [(ngModel)]="currency">
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="modal.close('Search click')">Search</button>
+    </div>
+</ng-template>
+
+<ng-template #content6 let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Amount</h4>
+    </div>
+    <div class="modal-body">
+        <label for="min">Min</label>
+        <input type="number" id="min" class="form-control" [(ngModel)]="minAmount">
+        <label for="max">Max</label>
+        <input type="number" id="max" class="form-control" [(ngModel)]="maxAmount">
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="modal.close('Search click')">Search</button>
+    </div>
+</ng-template>
+
+<ng-template #content7 let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Ordernumber</h4>
+    </div>
+    <div class="modal-body">
+        <input type="text" class="form-control" [(ngModel)]="orderNumber">
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="modal.close('Search click')">Search</button>
+    </div>
+</ng-template>
+
+<ng-template #content8 let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Supplier Invoice Id</h4>
+    </div>
+    <div class="modal-body">
+        <input type="text" class="form-control" [(ngModel)]="supplierInvoiceId">
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="modal.close('Search click')">Search</button>
+    </div>
+</ng-template>
+
+<ng-template #content9 let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Status</h4>
+    </div>
+    <div class="modal-body">
+        <input type="text" class="form-control" [(ngModel)]="status">
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="modal.close('Search click')">Search</button>
+    </div>
+</ng-template>
+
+<div class="background search2">
+    <h2 class="title">Invoices</h2>
+    <div *ngIf="!searchTrue" class="search">
+        <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  Start searching for invoice details">
+    </div>
+    <div *ngIf="searchTrue">
+        <h2 class="title">Search</h2>
+        <ul class="searchList">
+            <li *ngIf="internalInvoiceIdSearch" (click)="searchItemDelete('internalInvoiceId')">Internal Invoice Id: {{internalInvoiceId}}</li>
+            <li *ngIf="minUploadDateSearch" (click)="searchItemDelete('minUploadDate')">Min Upload Date: {{minUploadDate}}</li>
+            <li *ngIf="maxUploadDateSearch" (click)="searchItemDelete('maxUploadDate')">Max Upload Date: {{maxUploadDate}}</li>
+            <li *ngIf="costCenterSearch" (click)="searchItemDelete('costCenter')">Costcenter: {{costCenter}}</li>
+            <li *ngIf="businessPartnerSearch" (click)="searchItemDelete('businessPartner')">Business Partner: {{businessPartner}}</li>
+            <li *ngIf="contractorSearch" (click)="searchItemDelete('contractor')">Contractor: {{contractor}}</li>
+            <li *ngIf="currencySearch" (click)="searchItemDelete('currency')">Currency: {{currency}}</li>
+            <li *ngIf="minAmountSearch" (click)="searchItemDelete('minAmount')">Min Amount: {{minAmount}}</li>
+            <li *ngIf="maxAmountSearch" (click)="searchItemDelete('maxAmount')">Max Amount: {{maxAmount}}</li>
+            <li *ngIf="orderNumberSearch" (click)="searchItemDelete('orderNumber')">Ordernumber: {{orderNumber}}</li>
+            <li *ngIf="supplierInvoiceIdSearch" (click)="searchItemDelete('supplierInvoiceId')">Supplier Invoice Id: {{supplierInvoiceId}}</li>
+            <li *ngIf="statusSearch" (click)="searchItemDelete('status')">Status: {{status}}</li>
+            <button (click)="searchDelete()">Delete</button>
+        </ul>
+    </div>
+</div>
+<div>
+    <table class="table table-dark table-striped">
+        <thead>
+            <tr class="center">
+                <th>
+                    <button class="orderButton" (click)="orderByInternalInvoiceId()">II Id</button>
+                    <span class="sortorder" *ngIf="orderInternalInvoiceId == 'ordered'"></span>
+                    <span class="reverse" *ngIf="orderInternalInvoiceId == 'reverse'"></span>
+                    <span class="notorder" *ngIf="orderInternalInvoiceId == 'not order'"></span>
+                </th>
+                <th>
+                    <button class="orderButton" (click)="orderByUploadDate()">Upload date</button>
+                    <span class="sortorder" *ngIf="orderUploadDate == 'ordered'"></span>
+                    <span class="reverse" *ngIf="orderUploadDate == 'reverse'"></span>
+                    <span class="notorder" *ngIf="orderUploadDate == 'not order'"></span>
+                </th>
+                <th>
+                    <button class="orderButton" (click)="orderByCostCenter()">Cost<wbr>center</button>
+                    <span class="sortorder" *ngIf="orderCostCenter == 'ordered'"></span>
+                    <span class="reverse" *ngIf="orderCostCenter == 'reverse'"></span>
+                    <span class="notorder" *ngIf="orderCostCenter == 'not order'"></span>
+                </th>
+                <th>
+                    <button class="orderButton" (click)="orderByBusinessPartner()">Business partner</button>
+                    <span class="sortorder" *ngIf="orderBusinessPartner == 'ordered'"></span>
+                    <span class="reverse" *ngIf="orderBusinessPartner == 'reverse'"></span>
+                    <span class="notorder" *ngIf="orderBusinessPartner == 'not order'"></span>
+                </th>
+                <th>
+                    <button class="orderButton" (click)="orderByContractor()">Contractor</button>
+                    <span class="sortorder" *ngIf="orderContractor == 'ordered'"></span>
+                    <span class="reverse" *ngIf="orderContractor == 'reverse'"></span>
+                    <span class="notorder" *ngIf="orderContractor == 'not order'"></span>
+                </th>
+                <th>
+                    <button class="orderButton" (click)="orderByCurrency()">Currency</button>
+                    <span class="sortorder" *ngIf="orderCurrency == 'ordered'"></span>
+                    <span class="reverse" *ngIf="orderCurrency == 'reverse'"></span>
+                    <span class="notorder" *ngIf="orderCurrency == 'not order'"></span>
+                </th>
+                <th>
+                    <button class="orderButton" (click)="orderByAmount()">Amount</button>
+                    <span class="sortorder" *ngIf="orderAmount == 'ordered'"></span>
+                    <span class="reverse" *ngIf="orderAmount == 'reverse'"></span>
+                    <span class="notorder" *ngIf="orderAmount == 'not order'"></span>
+                </th>
+                <th>
+                    <button class="orderButton" (click)="orderByOrderNumber()">Order number</button>
+                    <span class="sortorder" *ngIf="orderOrderNumber == 'ordered'"></span>
+                    <span class="reverse" *ngIf="orderOrderNumber == 'reverse'"></span>
+                    <span class="notorder" *ngIf="orderOrderNumber == 'not order'"></span>
+                </th>
+                <th>
+                    <button class="orderButton" (click)="orderBySupplierInvoiceId()">SI Id</button>
+                    <span class="sortorder" *ngIf="orderSupplierInvoiceId == 'ordered'"></span>
+                    <span class="reverse" *ngIf="orderSupplierInvoiceId == 'reverse'"></span>
+                    <span class="notorder" *ngIf="orderSupplierInvoiceId == 'not order'"></span>
+                </th>
+                <th>
+                    <button class="orderButton" (click)="orderByStatus()">Status</button>
+                    <span class="sortorder" *ngIf="orderStatus == 'ordered'"></span>
+                    <span class="reverse" *ngIf="orderStatus == 'reverse'"></span>
+                    <span class="notorder" *ngIf="orderStatus == 'not order'"></span>
+                </th>
+                <th>View</th>
+            </tr>
+        </thead>
+        <tbody *ngIf="!searchTrue">
+            <tr *ngFor="let invoice of invoices | filter:searchText">
+                <td class="center" (click)="searchInvoice(content)">{{invoice?.internalInvoiceId}}</td>
+                <td (click)="searchInvoice(content1)">{{invoice?.uploadDate}}</td>
+                <td (click)="searchInvoice(content2)">{{invoice?.costCenter}}</td>
+                <td (click)="searchInvoice(content3)">{{invoice?.businessPartner}}</td>
+                <td (click)="searchInvoice(content4)">{{invoice?.contractor}}</td>
+                <td (click)="searchInvoice(content5)">{{invoice?.currency}}</td>
+                <td (click)="searchInvoice(content6)">{{invoice?.amount}}</td>
+                <td (click)="searchInvoice(content7)">{{invoice?.orderNumber}}</td>
+                <td (click)="searchInvoice(content8)">{{invoice?.supplierInvoiceId}}</td>
+                <td (click)="searchInvoice(content9)">{{invoice?.status}}</td>
+                <td><button (click) = invoicePdf(invoice.internalInvoiceId) class="button">Invoice</button></td>
+            </tr>
+        </tbody>
+        <tbody *ngIf="searchTrue">
+            <tr *ngFor="let invoice of searchedInvoices">
+                <td class="center" (click)="searchInvoice(content)">{{invoice?.internalInvoiceId}}</td>
+                <td (click)="searchInvoice(content1)">{{invoice?.uploadDate}}</td>
+                <td (click)="searchInvoice(content2)">{{invoice?.costCenter}}</td>
+                <td (click)="searchInvoice(content3)">{{invoice?.businessPartner}}</td>
+                <td (click)="searchInvoice(content4)">{{invoice?.contractor}}</td>
+                <td (click)="searchInvoice(content5)">{{invoice?.currency}}</td>
+                <td (click)="searchInvoice(content6)">{{invoice?.amount}}</td>
+                <td (click)="searchInvoice(content7)">{{invoice?.orderNumber}}</td>
+                <td (click)="searchInvoice(content8)">{{invoice?.supplierInvoiceId}}</td>
+                <td (click)="searchInvoice(content9)">{{invoice?.status}}</td>
+                <td><button (click) = invoicePdf(invoice.internalInvoiceId) class="button">Invoice</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
