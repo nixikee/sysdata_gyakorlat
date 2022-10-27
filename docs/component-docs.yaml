@@ -1,0 +1,133 @@
+openapi: 3.0.1
+info:
+  title: InvoiceManager API
+  description: Invoice and User Information
+  version: 3.0.1
+servers:
+- url: http://localhost:8080
+  description: Generated server url
+components:
+  schemas:
+    User:
+      required:
+      - companyId
+      - email
+      - firstName
+      - lastName
+      - password
+      - role
+      type: object
+      properties:
+        userId:
+          type: integer
+          format: int32
+        companyId:
+          type: string
+        iteration:
+          type: integer
+          format: int32
+        salt:
+          type: string
+        email:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        password:
+          type: string
+        role:
+          type: string
+      description: ""
+    UpdateStatus:
+      type: object
+      properties:
+        click:
+          type: string
+        user:
+          $ref: '#/components/schemas/User'
+      description: ""
+    Invoice:
+      required:
+      - businessPartner
+      - contractor
+      - costCenter
+      - currency
+      - orderNumber
+      - supplierInvoiceId
+      type: object
+      properties:
+        internalInvoiceId:
+          type: integer
+          format: int32
+        uploadDate:
+          type: string
+          format: date-time
+        costCenter:
+          type: string
+        businessPartner:
+          type: string
+        contractor:
+          type: string
+        currency:
+          type: string
+        amount:
+          type: integer
+          format: int32
+        orderNumber:
+          type: string
+        supplierInvoiceId:
+          type: string
+        status:
+          type: string
+        pdfBlob:
+          type: object
+          properties:
+            binaryStream:
+              type: object
+        user:
+          $ref: '#/components/schemas/User'
+      description: ""
+    SignupRequest:
+      required:
+      - email
+      - firstName
+      - lastName
+      - password
+      type: object
+      properties:
+        companyId:
+          maxLength: 8
+          minLength: 8
+          type: string
+        iteration:
+          type: integer
+          format: int32
+        salt:
+          type: string
+        email:
+          maxLength: 50
+          minLength: 0
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        password:
+          maxLength: 40
+          minLength: 6
+          type: string
+        role:
+          type: string
+      description: ""
+    LoginRequest:
+      required:
+      - email
+      - password
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      description: ""
